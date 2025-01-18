@@ -12,6 +12,9 @@ const AddArticleForm = ({ onSubmit }) => {
       title,
       isComplete
     })
+    // Reset state after submit
+    setTitle('');
+    setIsComplete(false);
   }
 
   const handleIsComplete = (e) => {
