@@ -10,6 +10,7 @@ const AddArticleForm = () => {
         <input
           type="text"
           placeholder="Inserisci un titolo"
+          className="border border-neutral-300 focus:outline-none rounded-lg px-1 text-sm"
         />
         <span className="mr-4">Stato</span>
         <div className="flex gap-2">
@@ -20,7 +21,7 @@ const AddArticleForm = () => {
               name="state"
               className="mr-1"
             />
-            <label htmlFor="radio-draft">Draft</label>
+            <label htmlFor="radio-draft" className="text-sm">Draft</label>
           </div>
           <div>
             <input
@@ -29,7 +30,7 @@ const AddArticleForm = () => {
               name="state"
               className="mr-1"
             />
-            <label htmlFor="radio-completo">Completo</label>
+            <label htmlFor="radio-completo" className="text-sm">Completo</label>
           </div>
         </div>
         <Button className="col-span-2" text="Aggiungi" />
