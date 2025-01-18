@@ -1,7 +1,26 @@
+import { useState } from "react"
 import Card from "./Card"
 import Button from "./partials/Button"
 
-const AddArticleForm = () => {
+const AddArticleForm = ({ onSubmit }) => {
+  const [title, setTitle] = useState('');
+  const [isComplete, setIsComplete] = useState(false);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    onSubmit({
+      title,
+      isComplete
+    })
+  }
+
+  const handleIsComplete = (e) => {
+    if (e.target.id === 'radio-draft') {
+      setIsComplete(false);
+    } else {
+      setIsComplete(true);
+    }
+  }
   return (
     <Card>
       <h2 className="text-xl font-medium text-center border-b border-neutral-300 py-4">Aggiungi un nuovo articolo</h2>
@@ -11,6 +30,8 @@ const AddArticleForm = () => {
           type="text"
           placeholder="Inserisci un titolo"
           className="border border-neutral-300 focus:outline-none rounded-lg px-1 text-sm"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
         />
         <span className="mr-4">Stato</span>
         <div className="flex gap-2">
@@ -20,6 +41,7 @@ const AddArticleForm = () => {
               id="radio-draft"
               name="state"
               className="mr-1"
+              onChange={handleIsComplete}
             />
             <label htmlFor="radio-draft" className="text-sm">Draft</label>
           </div>
@@ -29,11 +51,12 @@ const AddArticleForm = () => {
               id="radio-completo"
               name="state"
               className="mr-1"
+              onChange={handleIsComplete}
             />
             <label htmlFor="radio-completo" className="text-sm">Completo</label>
           </div>
         </div>
-        <Button className="col-span-2" text="Aggiungi" />
+        <Button className="col-span-2" text="Aggiungi" onClick={handleClick} />
       </form>
     </Card>
   )
