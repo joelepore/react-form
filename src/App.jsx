@@ -21,6 +21,16 @@ function App() {
     setArticleList(articleList.filter(article => article.id !== id));
   }
 
+  const handleEditArticle = (id, title) => {
+    setArticleList(articleList.map(article => {
+      if (article.id === id) {
+        return { ...article, title: title }
+      } else {
+        return article;
+      }
+    }))
+  }
+
 
   return (
     <>
@@ -28,7 +38,7 @@ function App() {
       <div className="max-w-screen-sm mx-auto">
         <AddArticleForm onSubmit={handleAddArticle} />
         <h2 className="py-4 font-bold text-2xl text-center">Articoli recenti</h2>
-        <ArticleList articles={articleList} onDelete={handleDeleteArticle} />
+        <ArticleList articles={articleList} onDelete={handleDeleteArticle} onEdit={handleEditArticle} />
       </div>
     </>
   )
