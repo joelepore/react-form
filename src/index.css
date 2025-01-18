@@ -8,3 +8,8 @@ body {
   font-family: 'Instrument Sans';
   background-color: #F9FAFB;
 }
+
+.article-form {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+}
