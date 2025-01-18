@@ -10,7 +10,7 @@ const ArticleList = ({ articles, className, onDelete, onEdit }) => {
         key={`art-${article.id}`}
         title={article.title}
         isComplete={article.isComplete}
-        onDelete={() => onDelete(article.id)}
+        onDelete={onDelete}
         onEdit={onEdit}
       />
     ));
