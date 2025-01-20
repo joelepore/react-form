@@ -25,17 +25,14 @@ const AddArticleForm = ({ onSubmit }) => {
   }
 
   const handleIsComplete = (e) => {
-    if (e.target.id === 'radio-draft') {
-      setIsComplete(false);
-    } else {
-      setIsComplete(true);
-    }
+    setIsComplete(e.target.id === 'radio-draft' ? false : true);
   }
 
   const getTitleSuggestionFromGemini = async () => {
     const result = await model.generateContent(prompt);
     setTitle(result.response.text());
   }
+
   return (
     <Card>
       <h2 className="text-xl font-medium text-center border-b border-neutral-300 py-4">Aggiungi un nuovo articolo</h2>
@@ -50,10 +47,13 @@ const AddArticleForm = ({ onSubmit }) => {
             onChange={e => setTitle(e.target.value)}
             size="80"
           />
-          <FaWandMagicSparkles
-            className="cursor-pointer"
-            onClick={getTitleSuggestionFromGemini}
-          />
+          <div className="tooltip">
+            <FaWandMagicSparkles
+              className="cursor-pointer"
+              onClick={getTitleSuggestionFromGemini}
+            />
+            <span className="tooltip-next">Fatti suggerire un titolo dall'AI</span>
+          </div>
         </div>
         <span className="mr-4">Stato</span>
         <div className="flex gap-2">
